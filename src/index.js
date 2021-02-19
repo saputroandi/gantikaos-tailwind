@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './styles/tailwind.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/Home/Home';
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

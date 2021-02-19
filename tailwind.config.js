@@ -26,6 +26,8 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+      lime: colors.lime,
+      cyan: colors.cyan,
     },
     spacing: {
       px: '1px',
@@ -132,6 +134,7 @@ module.exports = {
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none',
+      'offset-black': '2px 2px black'
     },
     container: {},
     cursor: {

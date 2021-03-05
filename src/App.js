@@ -1,7 +1,7 @@
 import React from "react"
 
 //router
-import {BrowserRouter, Route, Switch, Link} from "react-router-dom"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 import Home from "./pages/Home/Home"
 import Product from "./pages/Product/Product"
 

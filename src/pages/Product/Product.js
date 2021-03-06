@@ -1,98 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react"
+import { useDispatch } from 'react-redux'
+import { Carousel } from 'react-responsive-carousel'
+import { setAddToCart } from '../../redux/Cart/actions'
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
-//carousel
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import { connect } from "react-redux";
+const Product = () => {
 
-function Product(props) {
+    const initialItem = {
+        product_id: 1,
+        qty: 1,
+        size: 'S',
+        color: 'White',
+    }
+
     const [slide, setSlide] = useState(0)
-    const [makeOrder, setMakeOrder] = useState(
-        {
-            product_id : props.product.product_id,
-            quantity   : 0,
-            size       : 'm',
-            color      : 'white'
-        }
-    )
+    const [item, setItem] = useState(initialItem)
+    const handleChange = (selector, value) => setItem({...item, [selector]: value})
 
-    const action = {
-        increment : "increment",
-        decrement : "decrement",
-    }
-
-    const handleQuantity = (action, state = makeOrder) => {
-        if(action === "increment"){
-            setMakeOrder({
-                ...state,
-                quantity : state.quantity + 1,
-            })
-        }
-        if(action === "decrement"){
-            let order = 0
-            if(state.quantity > 0){
-                order = state.quantity - 1
-            }
-            setMakeOrder({
-                ...state,
-                quantity : order
-            })
-        }
-    }
-
-    const handleSize = (val) => {
-        setMakeOrder({
-            ...makeOrder,
-            size : val,
-        })
-    }
-
-    const handleColor = (color) => {
-        setMakeOrder({
-            ...makeOrder,
-            color : color,
-        })
-    }
-
-    const handleMakeOrder = () => {
-        props.storeOrder(makeOrder)
-    }
+    let dispatch = useDispatch()
 
     return (
         <React.Fragment>
             <div className="container my-8 mx-auto">
-                {/* product */}
+
+                {/* Product */}
                 <div className="grid grid-cols-2 gap-14 items-center">
-                    {/* product image */}
+                    
+                    {/* Product Image */}
                     <div className="grid grid-cols-4 gap-1">
                         <div className="grid gap-y-1">
-                            <div onClick={() => {setSlide(0)}} className="h-150 w-150">
-                                <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
+                            <div onClick={() => setSlide(0)} className="h-150 w-150">
+                                <img alt="example" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
                             </div>
-                            <div onClick={() => {setSlide(1)}} className="h-150 w-150">
-                                <img src="https://images.unsplash.com/photo-1600185652960-c9d8869d015c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
+                            <div onClick={() => setSlide(1)} className="h-150 w-150">
+                                <img alt="example" src="https://images.unsplash.com/photo-1600185652960-c9d8869d015c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
                             </div>
-                            <div onClick={() => {setSlide(2)}} className="h-150 w-150">
-                                <img src="https://images.unsplash.com/photo-1518894781321-630e638d0742?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
+                            <div onClick={() => setSlide(2)} className="h-150 w-150">
+                                <img alt="example" src="https://images.unsplash.com/photo-1518894781321-630e638d0742?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
                             </div>
                         </div>
                         <div className="h-450 w-450 col-start-2 col-end-5 place-self-center">
                             <Carousel selectedItem={slide} showStatus={false} showThumbs={false} showArrows={false} showIndicators={false} axis="vertical">
                                 <div>
-                                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+                                    <img alt="example-1" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
                                 </div>
                                 <div>
-                                    <img src="https://images.unsplash.com/photo-1600185652960-c9d8869d015c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+                                    <img alt="example-2" src="https://images.unsplash.com/photo-1600185652960-c9d8869d015c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
                                 </div>
                                 <div>
-                                    <img src="https://images.unsplash.com/photo-1518894781321-630e638d0742?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+                                    <img alt="example-3" src="https://images.unsplash.com/photo-1518894781321-630e638d0742?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
                                 </div>
                             </Carousel>
                         </div>
                     </div>
-                    {/* order button */}
+
+                    {/* Order Button */}
                     <div className="grid grid-rows-1 gap-y-2">
-                        <h3 className="text-gray-700 uppercase text-6xl">{props.product.name}</h3>
+                        <h3 className="text-gray-700 uppercase text-6xl">Sepatu Nike</h3>
                         <div className="flex items-end gap-x-2">
                             <span className="text-gray-700 text-lg">Rp. 500.000,-</span>
                             <span className="text-gray-500 text-sm line-through">Rp. 1.000.000,-</span>
@@ -100,30 +64,30 @@ function Product(props) {
                         <div>
                             <label className="text-gray-700 text-lg">Jumlah:</label>
                             <div className="flex gap-x-2 justify-items-center">
-                                <button onClick={() => {handleQuantity(action.decrement)}} className="text-gray-500 focus:outline-none focus:text-gray-600">
+                                <button onClick={() => setItem(item.qty < 2 ? {...item, qty: 1} : {...item, qty: item.qty - 1})} className="btn-decrement text-gray-500 focus:outline-none focus:text-gray-600">
                                     <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
                                 </button>
-                                <span className="text-gray-700 text-xl">{makeOrder.quantity}</span>
-                                <button onClick={() => {handleQuantity(action.increment)}} className="text-gray-500 focus:outline-none focus:text-gray-600">
+                                <span className="text-gray-700 text-xl">{item.qty}</span>
+                                <button onClick={() => setItem({...item, qty: item.qty + 1})} className="btn-increment text-gray-500 focus:outline-none focus:text-gray-600">
                                     <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                                 </button>
                             </div>
                         </div>
                         <div className="flex flex-col">
                             <label className="text-gray-700 text-lg">Size:</label>
-                            <select onChange={(e) => handleSize(e.target.value)} className="w-24 p-2 focus:outline-none">
-                                <option value="s">S</option>
-                                <option value="m">M</option>
-                                <option value="l">L</option>
-                                <option value="xl">XL</option>
+                            <select className="w-24 p-2 focus:outline-none" onChange={(e) => handleChange('size', e.target.value)}>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
                             </select>
                         </div>
                         <div>
                             <label className="text-gray-700 text-lg" htmlFor="count">Warna:</label>
                             <div className="flex gap-x-1 justify-items-center">
-                                <button onClick={(e) => {handleColor(e.target.value)}} value="navy" className="h-7 w-7 shadow-md focus:shadow-none bg-blue-900" />
-                                <button onClick={(e) => {handleColor(e.target.value)}} value="white" className="h-7 w-7 shadow-md focus:shadow-none bg-white" />
-                                <button onClick={(e) => {handleColor(e.target.value)}} value="black" className="h-7 w-7 shadow-md focus:shadow-none bg-black" />
+                                <button onClick={(e) => handleChange('color', e.target.value)} value="Navy" className="h-7 w-7 shadow-md focus:shadow-none bg-blue-900" />
+                                <button onClick={(e) => handleChange('color', e.target.value)} value="White" className="h-7 w-7 shadow-md focus:shadow-none bg-white" />
+                                <button onClick={(e) => handleChange('color', e.target.value)} value="Black" className="h-7 w-7 shadow-md focus:shadow-none bg-black" />
                             </div>
                         </div>
                         <div className="grid grid-cols-1 w-56 gap-y-2 mt-10">
@@ -134,13 +98,14 @@ function Product(props) {
                                 </button>
                             </div>
                             <div>
-                                <button onClick={() => {handleMakeOrder()}} className="w-full py-3 rounded shadow-md bg-black text-white focus:outline-none">Beli Sekarang</button>
+                                <button onClick={() => dispatch(setAddToCart(item))} className="w-full py-3 rounded shadow-md bg-black text-white focus:outline-none">Beli Sekarang</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* details product */}
+
+            {/* Details Product */}
             <div className="container my-8 mx-auto">
                 <div className="w-full" style={{borderBottom: '1px solid #eaeaea'}}>
                     <ul className="flex cursor-pointer space-x-3">
@@ -152,19 +117,7 @@ function Product(props) {
             </div>
         </React.Fragment>
     )
+
 }
 
-const mapStateToProps = (state) => {
-    return {
-        product : state.product
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addToCart : () => dispatch({type : 'ADD_TO_CART'}),
-        storeOrder: (val) => dispatch({type : 'MAKE_ORDER', val : val}),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Product)
+export default Product

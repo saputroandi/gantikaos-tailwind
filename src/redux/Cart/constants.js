@@ -1,0 +1,1 @@
+export const ADD_TO_CART = 'redux/Cart/ADD_TO_CART'

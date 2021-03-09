@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 //carousel
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import { Link } from "react-router-dom";
+import API from "../../services";
 
 export default function Home(){
 
     let image = 'url("https://images.unsplash.com/photo-1607307740691-3bac0511e16a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=460&q=80")'
 
     let image1 = 'url("https://images.unsplash.com/photo-1609016683866-029bca027853?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=477&q=80")'
+
+    useEffect(() => {
+        API.getProduct()
+    }, [])
 
     return (
         <React.Fragment>
@@ -54,66 +60,74 @@ export default function Home(){
             <main className="mb-16 mt-8 lg:my-8">
                 <div className="container mx-auto px-4 ">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 ">
-                        <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
-                            <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                </button>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
-                                    <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                </button>
+                        <Link to="/detail">
+                            <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
+                                <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    </button>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
+                                        <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    </button>
+                                </div>
+                                <div className="px-4 py-3 bg-gray-100">
+                                    <h3 className="text-gray-700 uppercase">Classic watch</h3>
+                                    <hr></hr>
+                                    <span className="text-gray-500 mt-2 flex justify-end">$123</span>
+                                </div>
                             </div>
-                            <div className="px-4 py-3 bg-gray-100">
-                                <h3 className="text-gray-700 uppercase">Classic watch</h3>
-                                <hr></hr>
-                                <span className="text-gray-500 mt-2 flex justify-end">$123</span>
+                        </Link>
+                        <Link to="/detail" to="/detail">
+                            <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
+                                <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    </button>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
+                                        <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    </button>
+                                </div>
+                                <div className="px-4 py-3 bg-gray-100">
+                                    <h3 className="text-gray-700 uppercase">Old watch</h3>
+                                    <hr></hr>
+                                    <span className="text-gray-500 mt-2 flex justify-end">$95</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
-                            <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                </button>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
-                                    <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                </button>
+                        </Link>
+                        <Link to="/detail">
+                            <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
+                                <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    </button>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
+                                        <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    </button>
+                                </div>
+                                <div className="px-4 py-3 bg-gray-100">
+                                    <h3 className="text-gray-700 uppercase">Classic watch</h3>
+                                    <hr></hr>
+                                    <span className="text-gray-500 mt-2 flex justify-end">$125</span>
+                                </div>
                             </div>
-                            <div className="px-4 py-3 bg-gray-100">
-                                <h3 className="text-gray-700 uppercase">Old watch</h3>
-                                <hr></hr>
-                                <span className="text-gray-500 mt-2 flex justify-end">$95</span>
+                        </Link>
+                        <Link to="/detail">
+                            <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
+                                <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    </button>
+                                    <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
+                                        <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    </button>
+                                </div>
+                                <div className="px-4 py-3 bg-gray-100">
+                                    <h3 className="text-gray-700 uppercase">fossil watch</h3>
+                                    <hr></hr>
+                                    <span className="text-gray-500 mt-2 flex justify-end">$180</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
-                            <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                </button>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
-                                    <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                </button>
-                            </div>
-                            <div className="px-4 py-3 bg-gray-100">
-                                <h3 className="text-gray-700 uppercase">Classic watch</h3>
-                                <hr></hr>
-                                <span className="text-gray-500 mt-2 flex justify-end">$125</span>
-                            </div>
-                        </div>
-                        <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
-                            <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage :  image}} onMouseOver={e => (e.currentTarget.style.backgroundImage = image1 )} onMouseOut={e => (e.currentTarget.style.backgroundImage = image )}>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                </button>
-                                <button className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4">
-                                    <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                </button>
-                            </div>
-                            <div className="px-4 py-3 bg-gray-100">
-                                <h3 className="text-gray-700 uppercase">fossil watch</h3>
-                                <hr></hr>
-                                <span className="text-gray-500 mt-2 flex justify-end">$180</span>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 </main>
@@ -145,7 +159,7 @@ export default function Home(){
                             <div>
                                 <p className="font-light text-xs text-white focus:outline-none">Cart</p>
                             </div>
-                            </button>
+                        </button>
                     </div>
                 </div>
                 {/* end mobile bottom navigation */}

@@ -1,0 +1,5 @@
+const token = {
+    gantiKaos : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhbmRpQGdtYWlsLmNvbSIsIm5hbWUiOiJhbmRpIHNhcHV0cm8iLCJ1cGRhdGVkQXQiOiIyMDIxLTAzLTA5VDAyOjU4OjAzLjg4NFoiLCJjcmVhdGVkQXQiOiIyMDIxLTAzLTA5VDAyOjU4OjAzLjg4NFoiLCJpYXQiOjE2MTUyNTg2ODMsImV4cCI6MTYxNTQzMTQ4M30.U9AhwTuprqahaOIiUyWnhgONL5NKe6xS7OoiX-f9V84"
+}
+
+export default token

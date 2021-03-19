@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Carousel } from 'react-responsive-carousel'
 import { setAddToCart } from '../../redux/Cart/actions'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
+import { useParams } from "react-router"
 
 const Product = () => {
 
@@ -26,6 +27,9 @@ const Product = () => {
     const handleCart = (selector, value) => setItem({...item, [selector]: value})
 
     let dispatch = useDispatch()
+    const { id } = useParams()
+
+    console.log(id)
 
     return (
         <React.Fragment>
@@ -35,7 +39,7 @@ const Product = () => {
                 <div className="grid gap-y-5 lg:grid-cols-2 lg:gap-14 lg:items-center">
                     
                     {/* Product Image */}
-                    <div className="grid gap-y-1 lg:grid-cols-4">
+                    <div className="grid gap-1 lg:grid-cols-4">
                         <div className="grid grid-cols-3 place-items-center lg:grid-cols-1 lg:gap-y-1">
                             <div onClick={() => setSlide(0)} className="h-150 w-150">
                                 <img alt="example" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
@@ -71,7 +75,7 @@ const Product = () => {
                         </div>
                         <div>
                             <label className="text-gray-700 text-lg">Jumlah:</label>
-                            <div className="flex">
+                            <div className="flex rouded">
                                 <div className="flex  gap-x-2 justify-items-center shadow-md">
                                     <button onClick={() => setItem(item.qty < 2 ? {...item, qty: 1} : {...item, qty: item.qty - 1})} className="btn-decrement text-gray-500 focus:outline-none focus:text-gray-600">
                                         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
@@ -85,7 +89,7 @@ const Product = () => {
                         </div>
                         <div className="flex flex-col">
                             <label className="text-gray-700 text-lg">Size:</label>
-                            <select className="w-24 p-2 focus:outline-none shadow-md" onChange={(e) => handleCart('size', e.target.value)}>
+                            <select className="w-24 p-2 rounded focus:outline-none shadow-md" onChange={(e) => handleCart('size', e.target.value)}>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
@@ -95,9 +99,9 @@ const Product = () => {
                         <div>
                             <label className="text-gray-700 text-lg" htmlFor="count">Warna:</label>
                             <div className="flex gap-x-1 justify-items-center">
-                                <button onClick={(e) => handleCart('color', e.target.value)} value="Navy" className="h-7 w-7 shadow-md focus:shadow-none bg-blue-900" />
-                                <button onClick={(e) => handleCart('color', e.target.value)} value="White" className="h-7 w-7 shadow-md focus:shadow-none bg-white" />
-                                <button onClick={(e) => handleCart('color', e.target.value)} value="Black" className="h-7 w-7 shadow-md focus:shadow-none bg-black" />
+                                <button onClick={(e) => handleCart('color', e.target.value)} value="Navy" className="h-7 w-7 shadow-md rounded focus:shadow-none bg-blue-900" />
+                                <button onClick={(e) => handleCart('color', e.target.value)} value="White" className="h-7 w-7 shadow-md rounded focus:shadow-none bg-white" />
+                                <button onClick={(e) => handleCart('color', e.target.value)} value="Black" className="h-7 w-7 shadow-md rounded focus:shadow-none bg-black" />
                             </div>
                         </div>
                         <div className="grid grid-cols-1 lg:w-56 gap-y-2 mt-10">

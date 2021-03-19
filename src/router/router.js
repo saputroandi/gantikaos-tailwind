@@ -11,8 +11,8 @@ export default function Router() {
                     <Route
                     key={index}
                     path={route.path}
-                    exact={route.exact}
                     children={<route.component />}
+                    {...route.props}
                     />
                 ))}
             </Switch>

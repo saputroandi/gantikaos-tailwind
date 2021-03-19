@@ -1,17 +1,18 @@
-import Home from "../pages/Home/Home"
-import Product from "../pages/Product/Product"
+import Home from "../pages/Home"
+import Product from "../pages/Details"
 
 //add your routes here
 
 const routes = [
     {
         path : "/",
-        exact : true,
+        props : {
+            exact : true,
+        },
         component : () => <Home />
     },
     {
-        path : "/detail",
-        exact : false,
+        path : "/detail/:id",
         component : () => <Product />
     },
 ]

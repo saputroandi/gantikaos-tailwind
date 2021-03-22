@@ -1,19 +1,13 @@
 import axios from "axios"
-import token from "./token"
+import config from "./config"
 
 export const rootPath = "https://gantikaos.fakta.website/api/v1"
 
 
 
-const GET = async (path) => {
+const GET = async (path,config) => {
 
     try {
-
-        let config = {
-            headers : {
-                'Authorization' : `Bearer ${token.gantiKaos}`
-            }
-        }
 
         const response = await axios.get(rootPath+path, config)
 
@@ -26,12 +20,29 @@ const GET = async (path) => {
     }
 
 }
+const POST = async (path, config) => {
 
-const getProduct = () => GET("/products")
+    try {
+
+        const response = await axios.post(rootPath+path, config)
+
+        return response
+
+    } catch(err){
+
+        console.error(err)
+
+    }
+
+}
+
+const getProduct = () => GET(config.allProduct.path, config.allProduct.endpoint)
+const postAuthApp = () => POST(config.authApp.path, config.authApp.endpoint)
 
 const API = {
 
     getProduct,
+    postAuthApp,
     
 }
 

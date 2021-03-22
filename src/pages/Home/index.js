@@ -3,6 +3,7 @@ import ProductCard from "../../components/ProductCard/index"
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import API from "../../services";
+import { autoRefreshToken } from "../../services/token"
 
 export default function Home(){
 

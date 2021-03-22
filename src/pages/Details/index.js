@@ -76,7 +76,7 @@ const Product = () => {
                         <div>
                             <label className="text-gray-700 text-lg">Jumlah:</label>
                             <div className="flex rouded">
-                                <div className="flex  gap-x-2 justify-items-center shadow-md">
+                                <div className="flex  gap-x-2 justify-items-center ">
                                     <button onClick={() => setItem(item.qty < 2 ? {...item, qty: 1} : {...item, qty: item.qty - 1})} className="btn-decrement text-gray-500 focus:outline-none focus:text-gray-600">
                                         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
                                     </button>

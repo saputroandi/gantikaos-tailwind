@@ -29,7 +29,6 @@ const Product = () => {
     let dispatch = useDispatch()
     const { id } = useParams()
 
-    console.log(id)
 
     return (
         <React.Fragment>

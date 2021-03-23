@@ -1,15 +1,21 @@
+import axios from "axios"
 import API, { rootPath } from "./index"
 
 const token = {
-    gantiKaos : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImFuZGkgc2FwdXRybyIsImVtYWlsIjoiYW5kaUBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDIxLTAzLTA5VDAyOjU4OjAzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAzLTA5VDAyOjU4OjAzLjAwMFoiLCJpYXQiOjE2MTYzOTA0NDUsImV4cCI6MTYxNjU2MzI0NX0.hj9YxdCkzhtCnCQ_0fmRz5wWNTpCfwBPMw9-RrjkFDI"
+    gantiKaos : localStorage.getItem("token")
 }
 
-// export const autoRefreshToken = () => {
-    
-//     setInterval(API.postAuthApp().then((val) => {
-//         console.log(val)
-//     }),5000)
 
-// }
+
+axios.interceptors.response.use((response) => {
+    return response
+}, async (err) => {
+    let value = await API.postAuthApp()
+    // axios.defaults.headers.common['Authorization'] = `Bearer ${value.data.token}`
+    localStorage.setItem("token", value.data.token)
+    let response = await API.getProduct()
+    return response
+})
+
 
 export default token

@@ -3,7 +3,7 @@ import ProductCard from "../../components/ProductCard/index"
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import API from "../../services";
-import { autoRefreshToken } from "../../services/token"
+import NavBar from "../../components/NavBar";
 
 export default function Home(){
 
@@ -13,30 +13,17 @@ export default function Home(){
         API.getProduct().then((val) => {
         return setAllproduct(val.data.rows)
         })
+        // API.postAuthApp().then((val) => {
+        //     localStorage.setItem("token", val.data.token)
+        //     return console.log(val.data.token)
+        // })
     }, [])
+
     
     return (
         <React.Fragment>
             {/* Navbar */}
-            <nav className="static top-0 hidden lg:block bg-black">
-                <div className="container mx-auto grid grid-cols-5 gap-1 py-6">
-                    <div className="grid content-center text-white uppercase">
-                        Ganti Kaos
-                    </div>
-                    <div className="col-start-4">
-                        <div className=" justify-items-center">
-                            <input type="text" placeholder="Search..." className=" border-gray-300 h-10 w-full pl-2 text-sm focus:outline-none" />
-                        </div>
-                    </div>
-                    <div className="col-start-5 col-end-6 py-2 block mt-0">
-                        <div className="grid grid-cols-3 justify-items-center">
-                            <button className=" text-white uppercase focus:outline-none">Menu</button>
-                            <button className=" text-white uppercase focus:outline-none">Wishlist</button>
-                            <button className=" text-white uppercase focus:outline-none">Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <NavBar />
             {/* end Navbar */}
 
             {/* Carousel */}

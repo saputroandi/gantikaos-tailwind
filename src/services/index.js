@@ -36,8 +36,9 @@ const POST = async (path, config) => {
 
 }
 
-const getProduct = () => GET(config.allProduct.path, config.allProduct.endpoint)
-const postAuthApp = () => POST(config.authApp.path, config.authApp.endpoint)
+
+const getProduct = () => GET(config.allProduct.path, config.allProduct.params)
+const postAuthApp = () => POST(config.authApp.path, config.authApp.params)
 
 const API = {
 

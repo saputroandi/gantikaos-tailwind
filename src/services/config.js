@@ -1,13 +1,14 @@
 
 import token from "./token"
 
+
 const config = {
 
     authApp: {
 
         path : "/auth/signin",
 
-        endpoint : {
+        params : {
             username : "andi@gmail.com",
             password : "andi123",
         }
@@ -18,7 +19,7 @@ const config = {
 
         path : "/products",
 
-        endpoint : {
+        params : {
             headers : {
                 'Authorization' : `Bearer ${token.gantiKaos}`
             }

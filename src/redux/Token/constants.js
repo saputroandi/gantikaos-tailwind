@@ -1,1 +1,0 @@
-export const ADD_TOKEN = 'redux/Token/ADD_TOKEN'

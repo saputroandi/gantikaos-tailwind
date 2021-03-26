@@ -2,21 +2,28 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/index"
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
-import API from "../../services";
+import API, { GET } from "../../services";
 import NavBar from "../../components/NavBar";
+import { checkToken } from "../../services/token";
 
 export default function Home(){
 
     const [allProduct, setAllproduct] = useState([])
 
-    useEffect(() => {
-        API.getProduct().then((val) => {
-        return setAllproduct(val.data.rows)
+    const handleCheckToken = async () => {
+
+        let token  = await checkToken()
+        let values = await GET("/products", token.localToken, "").then((val) => {
+            setAllproduct(val.data.rows)
         })
-        // API.postAuthApp().then((val) => {
-        //     localStorage.setItem("token", val.data.token)
-        //     return console.log(val.data.token)
-        // })
+
+        return values
+    }
+
+    useEffect(() => {
+    
+        handleCheckToken()
+
     }, [])
 
     

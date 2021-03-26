@@ -1,7 +1,4 @@
 
-import token from "./token"
-
-
 const config = {
 
     authApp: {
@@ -21,7 +18,7 @@ const config = {
 
         params : {
             headers : {
-                'Authorization' : `Bearer ${token.gantiKaos}`
+                'Authorization' : `Bearer `
             }
         }
 

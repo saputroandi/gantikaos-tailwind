@@ -1,9 +1,17 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux'
 import { Carousel } from 'react-responsive-carousel'
 import { setAddToCart } from '../../redux/Cart/actions'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { useParams } from "react-router"
+import ShopName from "../../components/ShopName";
+import SearchBox from "../../components/SearchBox";
+import TopBarMenu from "../../components/TopBarMenu";
+import BackButton from "../../components/BackButton"
+import ShareButton from "../../components/ShareButton"
+import SearchButton from "../../components/SearchButton"
+import { GET, rootPath } from "../../services"
+import { checkToken } from "../../services/token"
 
 const Product = () => {
 
@@ -14,13 +22,8 @@ const Product = () => {
         color: 'White',
     }
 
-    const dataDesc = {
-        desc : "ini deskripsi",
-        terms : "ini ketentuan",
-        review : "ini review",
-    }
-
-    const [desc, setDesc] = useState(dataDesc.desc)
+    const [detailsProduct, setDetailsProduct] = useState({})
+    const [photosProduct, setPhotosProduct] = useState([])
 
     const [slide, setSlide] = useState(0)
     const [item, setItem] = useState(initialItem)
@@ -29,48 +32,85 @@ const Product = () => {
     let dispatch = useDispatch()
     const { id } = useParams()
 
+    const getProduct = async () => {
+
+        let token  = await checkToken()
+        let product = await GET(`/products/id/${id}`, token.localToken, "").then((val) => {
+            return val.data
+        })
+        
+        setDetailsProduct(product)
+        setPhotosProduct(product.photos)
+
+        return product
+        
+    }
+
+    useEffect(() => {
+
+        getProduct()
+        
+    },[])
+
 
     return (
         <React.Fragment>
-            <div className="container my-8 mx-auto">
+            {/* Navbar */}
+            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black">
+                <div className="container mx-auto grid grid-cols-7 lg:grid-cols-5 gap-1 py-6">
+                    <BackButton />
+                    <ShopName className="grid col-start-3 col-end-6 lg:col-start-1 lg:col-end-2 lg:content-center text-xl text-white uppercase " />
+                    <ShareButton />
+                    <SearchButton />
+                    <SearchBox />
+                    <TopBarMenu />
+                </div>
+            </nav>
+            {/* end Navbar */}
+            <div className="container mt-3 lg:my-8 mx-auto">
 
                 {/* Product */}
                 <div className="grid gap-y-5 lg:grid-cols-2 lg:gap-14 lg:items-center">
+
                     
                     {/* Product Image */}
-                    <div className="grid gap-1 lg:grid-cols-4">
-                        <div className="grid grid-cols-3 place-items-center lg:grid-cols-1 lg:gap-y-1">
-                            <div onClick={() => setSlide(0)} className="h-150 w-150">
-                                <img alt="example" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
-                            </div>
-                            <div onClick={() => setSlide(1)} className="h-150 w-150">
-                                <img alt="example" src="https://images.unsplash.com/photo-1600185652960-c9d8869d015c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
-                            </div>
-                            <div onClick={() => setSlide(2)} className="h-150 w-150">
-                                <img alt="example" src="https://images.unsplash.com/photo-1518894781321-630e638d0742?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
-                            </div>
+                    <div className="grid gap-1 justify-self-center lg:grid-cols-4">
+                        <div className="grid grid-cols-3 lg:gap-1 lg:grid-cols-1">
+                            {
+                                photosProduct.map((val, index) => {
+                                    return (
+
+                                        <div onClick={() => setSlide(index)} className="h-130 w-130 lg:h-150 lg:w-150 overflow-hidden">
+                                            <img alt={`${val.photo}`} src={`${rootPath}/product-galleries/image/${val.photo}`}/>
+                                        </div>
+
+                                    )
+                                })
+                            }
                         </div>
-                        <div className="h-450 w-450 row-start-1 lg:col-start-2">
+                        <div className="grid h-390 w-390 lg:h-450 lg:w-450 row-start-1 place-items-center lg:col-start-2">
                             <Carousel selectedItem={slide} showStatus={false} showThumbs={false} showArrows={false} showIndicators={false} axis="vertical">
-                                <div>
-                                    <img alt="example-1" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-                                </div>
-                                <div>
-                                    <img alt="example-2" src="https://images.unsplash.com/photo-1600185652960-c9d8869d015c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-                                </div>
-                                <div>
-                                    <img alt="example-3" src="https://images.unsplash.com/photo-1518894781321-630e638d0742?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-                                </div>
+                                {
+                                    photosProduct.map((val) => {
+                                        return (
+
+                                            <div className="h-390 w-390 lg:h-450 lg:w-450 overflow-hidden">
+                                                <img alt={`${val.photo}`} src={`${rootPath}/product-galleries/image/${val.photo}`} />
+                                            </div>
+
+                                        )
+                                    })
+                                }
                             </Carousel>
                         </div>
                     </div>
 
                     {/* Order Button */}
                     <div className="grid mx-auto gap-y-2 lg:grid-rows-1 lg:mx-0">
-                        <h3 className="text-gray-700 uppercase text-6xl">Sepatu Nike</h3>
+                        <h3 className="text-gray-700 uppercase text-6xl">{detailsProduct.name}</h3>
                         <div className="flex items-end gap-x-2">
-                            <span className="text-gray-700 text-lg">Rp. 500.000,-</span>
-                            <span className="text-gray-500 text-sm line-through">Rp. 1.000.000,-</span>
+                            <span className="text-gray-700 text-lg">Rp. {detailsProduct.price},-</span>
+                            <span className="text-gray-500 text-sm line-through">Rp. {detailsProduct.price + (detailsProduct.price*(20/100))},-</span>
                         </div>
                         <div>
                             <label className="text-gray-700 text-lg">Jumlah:</label>
@@ -120,23 +160,23 @@ const Product = () => {
             {/* Details Product */}
             <div className="container my-8">
                 <div className="w-screen" style={{borderBottom: '1px solid #eaeaea'}}>
-                    <ul className="flex ml-4 cursor-pointer space-x-3">
+                    <div className="flex ml-4 cursor-pointer space-x-3">
                         <div className="container mx-auto flex">
-                            <li className="ml-8">
-                                <button onClick={() => setDesc(dataDesc.desc)} className="p-2 focus:outline-none focus:bg-gray-400">Deskripsi</button>
-                            </li>
-                            <li className="ml-8">
-                                <button onClick={() => setDesc(dataDesc.terms)} className="p-2 focus:outline-none focus:bg-gray-400">Ketentuan</button>
-                            </li>
-                            <li className="ml-8">
-                                <button onClick={() => setDesc(dataDesc.review)} className="p-2 focus:outline-none focus:bg-gray-400">Ulasan</button>
-                            </li>
+                            <div className="ml-8">
+                                <button className="p-2 focus:outline-none focus:bg-gray-400">Deskripsi</button>
+                            </div>
+                            {/* <div className="ml-8">
+                                <button className="p-2 focus:outline-none focus:bg-gray-400">Ketentuan</button>
+                            </div>
+                            <div className="ml-8">
+                                <button className="p-2 focus:outline-none focus:bg-gray-400">ulasan</button>
+                            </div> */}
                         </div>
-                    </ul>
+                    </div>
                 </div>
             </div>
-            <div>
-                <h3>{desc}</h3>
+            <div className="">
+                <h3 className="m-3 lg:m-6">{detailsProduct.description}</h3>
             </div>
 
         </React.Fragment>

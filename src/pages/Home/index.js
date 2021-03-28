@@ -3,8 +3,10 @@ import ProductCard from "../../components/ProductCard/index"
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import API, { GET } from "../../services";
-import NavBar from "../../components/NavBar";
 import { checkToken } from "../../services/token";
+import ShopName from "../../components/ShopName";
+import SearchBox from "../../components/SearchBox";
+import TopBarMenu from "../../components/TopBarMenu";
 
 export default function Home(){
 
@@ -14,7 +16,7 @@ export default function Home(){
 
         let token  = await checkToken()
         let values = await GET("/products", token.localToken, "").then((val) => {
-            setAllproduct(val.data.rows)
+            return setAllproduct(val.data.rows)
         })
 
         return values
@@ -30,7 +32,13 @@ export default function Home(){
     return (
         <React.Fragment>
             {/* Navbar */}
-            <NavBar />
+            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black">
+                <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-6">
+                    <ShopName className="grid place-items-center lg:content-center text-white uppercase" />
+                    <SearchBox />
+                    <TopBarMenu />
+                </div>
+            </nav>
             {/* end Navbar */}
 
             {/* Carousel */}

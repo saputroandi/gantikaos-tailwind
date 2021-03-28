@@ -6,10 +6,7 @@ export const checkToken = async () => {
     let localToken       = localStorage.getItem("token")
     let localExpiredTime = localStorage.getItem("expiredToken")
 
-    let tokenLife = Date.now() - localExpiredTime
-    console.log("expired "+ tokenLife)
-
-    if( !localToken || !localExpiredTime || tokenLife >= 169200000 ) {
+    if( !localToken || !localExpiredTime || localExpiredTime < Date.now() ) {
 
         try {
             
@@ -17,8 +14,8 @@ export const checkToken = async () => {
                 return val.data.token
             })
     
-            localStorage.setItem("token", value)
-            localStorage.setItem("expiredToken", Date.now())
+            localStorage.setItem( "token", value )
+            localStorage.setItem( "expiredToken", Date.now()+169200000 )
             axios.defaults.headers.common['Authorization'] = `Bearer ${value}`
     
             return value
@@ -32,7 +29,6 @@ export const checkToken = async () => {
     }
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${localToken}`
-    console.log(localToken)
 
     return {
 

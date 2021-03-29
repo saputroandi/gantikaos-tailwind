@@ -57,9 +57,9 @@ const Product = () => {
         <React.Fragment>
             {/* Navbar */}
             <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black w-screen">
-                <div className="container mx-auto grid grid-cols-7 lg:grid-cols-5 gap-1 py-6">
+                <div className="container mx-auto items-center grid grid-cols-7 lg:grid-cols-5 gap-1 py-6">
                     <BackButton />
-                    <ShopName className="grid col-start-3 col-end-6 lg:col-start-1 lg:col-end-2 lg:content-center text-xl text-white uppercase " />
+                    <ShopName className="grid col-start-3 col-end-6 lg:col-start-1 lg:col-end-2 lg:content-center text-xl text-white uppercase" />
                     <ShareButton />
                     <SearchButton />
                     <SearchBox />

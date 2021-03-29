@@ -32,7 +32,7 @@ export default function Home(){
     return (
         <React.Fragment>
             {/* Navbar */}
-            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black">
+            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black w-screen">
                 <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-6">
                     <ShopName className="grid place-items-center lg:content-center text-white uppercase" />
                     <SearchBox />

@@ -13,7 +13,7 @@ const Product = () => {
     const initialItem = {
         product_id: 1,
         qty: 1,
-        size: 'S',
+        size: 'M',
         color: 'White',
     }
 

@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import ProductCard from "../../components/ProductCard/index"
-import { Carousel } from 'react-responsive-carousel';
-import { Link } from "react-router-dom";
-import API, { GET } from "../../services";
-import { checkToken } from "../../services/token";
-import Cart from "../Cart";
+import { Carousel } from 'react-responsive-carousel'
+import { Link } from "react-router-dom"
+import API, { GET } from "../../services"
+import { checkToken } from "../../services/token"
+import Cart from "../Cart"
+import { setAddToCart } from '../../redux/Cart/actions'
+import { initialItem } from "../Details"
 
 
 export default function Home(){
 
+    const initialItem = {
+        product_id: 1,
+        qty: 1,
+        size: 'M',
+        color: 'White',
+    }
+
     const [allProduct, setAllproduct] = useState([])
+    const [item, setItem] = useState(initialItem)
+
+    const handleAddToCart = (val) => {
+
+        setItem({...item, product_id: val.id})
+        
+        setAddToCart(item)
+
+    }
 
     const handleCheckToken = async () => {
 
@@ -77,7 +95,7 @@ export default function Home(){
                             allProduct.map((val) => {
                                 return (
                                 <Link key={val.id} to={`/detail/${val.id}`}>
-                                    <ProductCard key={val.id} data={val} />
+                                    <ProductCard key={val.id} data={val} addToCart={(val) => handleAddToCart(val)} />
                                 </Link>
                                 )
                             })

@@ -2,9 +2,11 @@ import React from "react"
 import { rootPath } from "../../services/index"
 
 const ProductCard = (props) => {
+    let val = props.data.photos.find( photo => photo.is_default === true )
+
     return (
         <div className="p-4 w-full max-w-sm mx-auto overflow-hidden border-2 border-white hover:border-black">
-            <div className="flex items-end justify-end h-56 bg-center bg-cover"  style={{backgroundImage :  `url(${rootPath}/product-galleries/image/${props.data.photos[0].photo})` }}>
+            <div className="flex items-end justify-end h-56 bg-center bg-cover"  style={{backgroundImage :  `url(${rootPath}/product-galleries/image/${val.photo})` }}>
                 <button onClick={(e) => e.preventDefault()} className="p-2 rounded-full shadow-lg bg-black text-white mx-2 -mb-4 focus:outline-none">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                 </button>

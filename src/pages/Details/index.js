@@ -4,14 +4,9 @@ import { Carousel } from 'react-responsive-carousel'
 import { setAddToCart } from '../../redux/Cart/actions'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { useParams } from "react-router"
-import ShopName from "../../components/ShopName";
-import SearchBox from "../../components/SearchBox";
-import TopBarMenu from "../../components/TopBarMenu";
-import BackButton from "../../components/BackButton"
-import ShareButton from "../../components/ShareButton"
-import SearchButton from "../../components/SearchButton"
 import { GET, rootPath } from "../../services"
 import { checkToken } from "../../services/token"
+import { Link } from "react-router-dom"
 
 const Product = () => {
 
@@ -57,13 +52,34 @@ const Product = () => {
         <React.Fragment>
             {/* Navbar */}
             <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black w-screen">
-                <div className="container mx-auto items-center grid grid-cols-7 lg:grid-cols-5 gap-1 py-6">
-                    <BackButton />
-                    <ShopName className="grid col-start-3 col-end-6 lg:col-start-1 lg:col-end-2 lg:content-center text-xl text-white uppercase" />
-                    <ShareButton />
-                    <SearchButton />
-                    <SearchBox />
-                    <TopBarMenu />
+                <div className="container mx-auto items-center grid grid-cols-7 lg:grid-cols-5 gap-1 py-4 lg:py-6">
+                    <Link to={"/"}>
+                        <button className="flex content-center ml-3 text-sm text-white focus:outline-none lg:hidden">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                            Back
+                        </button>
+                    </Link>
+                    <div className="grid col-start-3 col-end-6 lg:col-start-1 lg:col-end-2 lg:content-center text-xl text-white uppercase">
+                        Ganti Kaos
+                    </div>
+                    <button className="grid place-items-center lg:mr-3 lg:col-start-3 lg:col-end-4 lg:self-center lg:place-items-end focus:outline-none">
+                        <svg className=" w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
+                    <button className="grid place-items-center lg:hidden focus:outline-none">
+                        <svg className=" w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </button>
+                    <div className="hidden col-start-4 lg:block">
+                        <div className=" justify-items-center">
+                            <input type="text" placeholder="Search..." className=" border-gray-300 h-10 w-full pl-2 text-sm focus:outline-none" />
+                        </div>
+                    </div>
+                    <div className="hidden col-start-5 col-end-6 py-2 lg:block mt-0">
+                        <div className="grid grid-cols-3 justify-items-center">
+                            <button className=" text-white uppercase focus:outline-none">Menu</button>
+                            <button className=" text-white uppercase focus:outline-none">Wishlist</button>
+                            <button className=" text-white uppercase focus:outline-none">Cart</button>
+                        </div>
+                    </div>
                 </div>
             </nav>
             {/* end Navbar */}

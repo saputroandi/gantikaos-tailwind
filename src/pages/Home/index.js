@@ -4,9 +4,8 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import API, { GET } from "../../services";
 import { checkToken } from "../../services/token";
-import ShopName from "../../components/ShopName";
-import SearchBox from "../../components/SearchBox";
-import TopBarMenu from "../../components/TopBarMenu";
+import Cart from "../Cart";
+
 
 export default function Home(){
 
@@ -31,12 +30,25 @@ export default function Home(){
     
     return (
         <React.Fragment>
+            <Cart />
             {/* Navbar */}
             <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black w-screen">
-                <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-6">
-                    <ShopName className="grid place-items-center lg:content-center text-white uppercase" />
-                    <SearchBox />
-                    <TopBarMenu />
+                <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-4 lg:py-6">
+                    <div className="grid place-items-center lg:content-center text-white uppercase">
+                        Ganti Kaos
+                    </div> 
+                    <div className="hidden col-start-4 lg:block">
+                        <div className=" justify-items-center">
+                            <input type="text" placeholder="Search..." className=" border-gray-300 h-10 w-full pl-2 text-sm focus:outline-none" />
+                        </div>
+                    </div>
+                    <div className="hidden col-start-5 col-end-6 py-2 lg:block mt-0">
+                        <div className="grid grid-cols-3 justify-items-center">
+                            <button className=" text-white uppercase focus:outline-none">Menu</button>
+                            <button className=" text-white uppercase focus:outline-none">Wishlist</button>
+                            <button className=" text-white uppercase focus:outline-none">Cart</button>
+                        </div>
+                    </div>
                 </div>
             </nav>
             {/* end Navbar */}
@@ -76,30 +88,30 @@ export default function Home(){
             {/* end product */}
 
             {/* mobile bottom navigation */}
-            <div className="fixed w-full py-2 bottom-0 lg:hidden bg-black">
+            <div className="fixed w-full py-2 bottom-0 lg:hidden bg-gray-200">
                 <div className=" grid grid-cols-3 justify-items-center">
                     <button className="focus:outline-none p-1">
-                        <div className="flex justify-center bg-black text-white">
+                        <div className="flex justify-center bg-gray-200 text-black">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
                         </div>
                         <div>
-                            <p className="font-light text-xs text-white focus:outline-none">Menu</p>
+                            <p className="font-light text-xs text-black focus:outline-none">Menu</p>
                         </div>
                     </button>
                     <button className="focus:outline-none p-1">
-                        <div className="flex justify-center bg-black text-white">
+                        <div className="flex justify-center bg-gray-200 text-black">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                         </div>
                         <div>
-                            <p className="font-light text-xs text-white focus:outline-none">Wishlist</p>
+                            <p className="font-light text-xs text-black focus:outline-none">Wishlist</p>
                         </div>
                     </button>
                     <button className="focus:outline-none p-1">
-                        <div className="flex justify-center bg-black text-white">
+                        <div className="flex justify-center bg-gray-200 text-black">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
                         <div>
-                            <p className="font-light text-xs text-white focus:outline-none">Cart</p>
+                            <p className="font-light text-xs text-black focus:outline-none">Cart</p>
                         </div>
                     </button>
                 </div>

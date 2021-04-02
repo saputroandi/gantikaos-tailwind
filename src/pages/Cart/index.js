@@ -3,7 +3,7 @@ import { arrayOf, string, shape, oneOfType, number, func } from 'prop-types'
 
 const Cart = ({items}) => {
 
-    return console.log(items)
+    return <div></div>
 
 }
 

@@ -6,7 +6,6 @@ import API, { GET } from "../../services"
 import { checkToken } from "../../services/token"
 import Cart from "../Cart"
 import { setAddToCart } from '../../redux/Cart/actions'
-import { initialItem } from "../Details"
 
 
 export default function Home(){
@@ -20,11 +19,11 @@ export default function Home(){
 
     const [allProduct, setAllproduct] = useState([])
     const [item, setItem] = useState(initialItem)
+    const [displayCart, setDisplayCart] = useState(false)
 
     const handleAddToCart = (val) => {
 
         setItem({...item, product_id: val.id})
-        
         setAddToCart(item)
 
     }
@@ -48,9 +47,9 @@ export default function Home(){
     
     return (
         <React.Fragment>
-            <Cart />
+            { displayCart ? <Cart /> : <div /> }
             {/* Navbar */}
-            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black w-screen">
+            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black">
                 <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-4 lg:py-6">
                     <div className="grid place-items-center lg:content-center text-white uppercase">
                         Ganti Kaos
@@ -64,7 +63,7 @@ export default function Home(){
                         <div className="grid grid-cols-3 justify-items-center">
                             <button className=" text-white uppercase focus:outline-none">Menu</button>
                             <button className=" text-white uppercase focus:outline-none">Wishlist</button>
-                            <button className=" text-white uppercase focus:outline-none">Cart</button>
+                            <button onClick={() => setDisplayCart(!displayCart)} className=" text-white uppercase focus:outline-none">Cart</button>
                         </div>
                     </div>
                 </div>
@@ -106,7 +105,7 @@ export default function Home(){
             {/* end product */}
 
             {/* mobile bottom navigation */}
-            <div className="fixed w-full py-2 bottom-0 lg:hidden bg-gray-200">
+            <div className="fixed z-10 w-full py-2 bottom-0 lg:hidden bg-gray-200">
                 <div className=" grid grid-cols-3 justify-items-center">
                     <button className="focus:outline-none p-1">
                         <div className="flex justify-center bg-gray-200 text-black">
@@ -129,7 +128,7 @@ export default function Home(){
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
                         <div>
-                            <p className="font-light text-xs text-black focus:outline-none">Cart</p>
+                            <p onClick={() => setDisplayCart(!displayCart)} className="font-light text-xs text-black focus:outline-none">Cart</p>
                         </div>
                     </button>
                 </div>

@@ -1,4 +1,5 @@
 import React from "react"
+import FormatRupiah from "../../services/formatRupiah"
 import { rootPath } from "../../services/index"
 
 const ProductCard = (props) => {
@@ -23,7 +24,7 @@ const ProductCard = (props) => {
                 <div className="px-4 py-3 bg-gray-100">
                     <h3 className="text-gray-700 uppercase">{props.data.name}</h3>
                     <hr></hr>
-                    <span className="text-gray-500 mt-2 flex justify-end">{props.data.price}</span>
+                    <span className="text-gray-500 mt-2 flex justify-end">{FormatRupiah(props.data.price)}</span>
                 </div>
         </div>
     )

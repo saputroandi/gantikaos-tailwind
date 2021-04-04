@@ -47,10 +47,10 @@ export default function Home(){
     
     return (
         <React.Fragment>
-            { displayCart ? <Cart /> : <div /> }
+            
             {/* Navbar */}
-            <nav className="sticky z-10 lg:z-0 lg:static top-0 bg-black">
-                <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-4 lg:py-6">
+            <nav className="sticky w-screen z-10 top-0 bg-black">
+                <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-1 py-3">
                     <div className="grid place-items-center lg:content-center text-white uppercase">
                         Ganti Kaos
                     </div> 
@@ -69,9 +69,10 @@ export default function Home(){
                 </div>
             </nav>
             {/* end Navbar */}
+            { displayCart ? <Cart /> : <div /> }  
 
             {/* Carousel */}
-            <div className="max-w-screen-2xl max-h-80 m-auto">
+            <div className="w-screen max-h-80 m-auto">
                 <Carousel autoPlay infiniteLoop interval={2500} showStatus={false} showThumbs={false} centerMode={true} stopOnHover={true}>
                     <div>
                         <img className="w-full h-40 lg:h-80" src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"/>
@@ -87,7 +88,7 @@ export default function Home(){
             {/* End Carousel */}
 
             {/* Product */}
-            <main className="mb-16 mt-8 lg:my-8">
+            <main className="w-screen mb-16 mt-8 lg:my-8">
                 <div className="container mx-auto px-4 ">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 ">
                         {
@@ -105,7 +106,7 @@ export default function Home(){
             {/* end product */}
 
             {/* mobile bottom navigation */}
-            <div className="fixed z-10 w-full py-2 bottom-0 lg:hidden bg-gray-200">
+            <div className="fixed z-10 w-screen py-1 bottom-0 lg:hidden bg-gray-200">
                 <div className=" grid grid-cols-3 justify-items-center">
                     <button className="focus:outline-none p-1">
                         <div className="flex justify-center bg-gray-200 text-black">

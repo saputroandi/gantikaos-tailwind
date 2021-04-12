@@ -6,25 +6,29 @@ import API, { GET } from "../../services"
 import { checkToken } from "../../services/token"
 import Cart from "../Cart"
 import { setAddToCart } from '../../redux/Cart/actions'
+import { useDispatch } from "react-redux"
 
 
 export default function Home(){
 
-    const initialItem = {
-        product_id: 1,
-        qty: 1,
-        size: 'M',
-        color: 'White',
-    }
-
-    const [allProduct, setAllproduct] = useState([])
-    const [item, setItem] = useState(initialItem)
+    const [allProduct, setAllproduct]   = useState([])
     const [displayCart, setDisplayCart] = useState(false)
+    
+    let dispatch = useDispatch()
 
     const handleAddToCart = (val) => {
 
-        setItem({...item, product_id: val.id})
-        setAddToCart(item)
+        let item = {
+
+            product_id: val.id,
+            product   : val,
+            qty       : 1,
+            color     : 'white',
+            size      : 'L',
+
+        }
+
+        dispatch(setAddToCart(item))
 
     }
 
@@ -37,6 +41,7 @@ export default function Home(){
 
         return values
     }
+
 
     useEffect(() => {
     
@@ -72,7 +77,7 @@ export default function Home(){
             { displayCart ? <Cart /> : <div /> }  
 
             {/* Carousel */}
-            <div className="w-screen max-h-80 m-auto">
+            <div className="w-screen max-h-80">
                 <Carousel autoPlay infiniteLoop interval={2500} showStatus={false} showThumbs={false} centerMode={true} stopOnHover={true}>
                     <div>
                         <img className="w-full h-40 lg:h-80" src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"/>
